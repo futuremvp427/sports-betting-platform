@@ -170,8 +170,9 @@ class OddsAPIProvider(BaseProvider):
         return data if isinstance(data, list) else []
 
     def _get_demo_data(self, endpoint: str) -> List[Dict[str, Any]]:
-        """Return demo data when no API key is available."""
-        logger.info("Returning demo data (no API key)")
+        """Return demo data when no API key is available.
+        Features Caesars Sportsbook and PrizePicks as primary platforms."""
+        logger.info("Returning demo data (no API key) — Caesars & PrizePicks featured")
         now = datetime.utcnow().isoformat()
 
         if "sports" in endpoint:
@@ -192,6 +193,46 @@ class OddsAPIProvider(BaseProvider):
                     "commence_time": now,
                     "bookmakers": [
                         {
+                            "key": "caesars",
+                            "title": "Caesars Sportsbook",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Los Angeles Lakers", "price": -148},
+                                        {"name": "Boston Celtics", "price": 128},
+                                    ],
+                                },
+                                {
+                                    "key": "spreads",
+                                    "outcomes": [
+                                        {"name": "Los Angeles Lakers", "price": -110, "point": -3.5},
+                                        {"name": "Boston Celtics", "price": -110, "point": 3.5},
+                                    ],
+                                },
+                                {
+                                    "key": "totals",
+                                    "outcomes": [
+                                        {"name": "Over", "price": -108, "point": 224.5},
+                                        {"name": "Under", "price": -112, "point": 224.5},
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "key": "prizepicks",
+                            "title": "PrizePicks",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Los Angeles Lakers", "price": -152},
+                                        {"name": "Boston Celtics", "price": 132},
+                                    ],
+                                },
+                            ],
+                        },
+                        {
                             "key": "draftkings",
                             "title": "DraftKings",
                             "markets": [
@@ -200,13 +241,6 @@ class OddsAPIProvider(BaseProvider):
                                     "outcomes": [
                                         {"name": "Los Angeles Lakers", "price": -150},
                                         {"name": "Boston Celtics", "price": 130},
-                                    ],
-                                },
-                                {
-                                    "key": "spreads",
-                                    "outcomes": [
-                                        {"name": "Los Angeles Lakers", "price": -110, "point": -3.5},
-                                        {"name": "Boston Celtics", "price": -110, "point": 3.5},
                                     ],
                                 },
                             ],
@@ -247,6 +281,39 @@ class OddsAPIProvider(BaseProvider):
                     "commence_time": now,
                     "bookmakers": [
                         {
+                            "key": "caesars",
+                            "title": "Caesars Sportsbook",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Golden State Warriors", "price": -195},
+                                        {"name": "Miami Heat", "price": 168},
+                                    ],
+                                },
+                                {
+                                    "key": "spreads",
+                                    "outcomes": [
+                                        {"name": "Golden State Warriors", "price": -108, "point": -5.5},
+                                        {"name": "Miami Heat", "price": -112, "point": 5.5},
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "key": "prizepicks",
+                            "title": "PrizePicks",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Golden State Warriors", "price": -188},
+                                        {"name": "Miami Heat", "price": 162},
+                                    ],
+                                },
+                            ],
+                        },
+                        {
                             "key": "draftkings",
                             "title": "DraftKings",
                             "markets": [
@@ -274,6 +341,41 @@ class OddsAPIProvider(BaseProvider):
                         },
                     ],
                 },
+                {
+                    "id": "demo_event_003",
+                    "sport_key": "basketball_nba",
+                    "home_team": "Denver Nuggets",
+                    "away_team": "Phoenix Suns",
+                    "commence_time": now,
+                    "bookmakers": [
+                        {
+                            "key": "caesars",
+                            "title": "Caesars Sportsbook",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Denver Nuggets", "price": -175},
+                                        {"name": "Phoenix Suns", "price": 150},
+                                    ],
+                                },
+                            ],
+                        },
+                        {
+                            "key": "prizepicks",
+                            "title": "PrizePicks",
+                            "markets": [
+                                {
+                                    "key": "h2h",
+                                    "outcomes": [
+                                        {"name": "Denver Nuggets", "price": -168},
+                                        {"name": "Phoenix Suns", "price": 145},
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
             ]
 
         # Default events
@@ -288,6 +390,12 @@ class OddsAPIProvider(BaseProvider):
                 "id": "demo_event_002",
                 "home_team": "Golden State Warriors",
                 "away_team": "Miami Heat",
+                "commence_time": now,
+            },
+            {
+                "id": "demo_event_003",
+                "home_team": "Denver Nuggets",
+                "away_team": "Phoenix Suns",
                 "commence_time": now,
             },
         ]

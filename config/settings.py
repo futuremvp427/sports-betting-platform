@@ -72,6 +72,29 @@ class BacktestConfig:
 
 
 @dataclass
+class PlatformConfig:
+    """User's preferred betting platforms, ordered by priority."""
+    primary_sportsbooks: list = field(default_factory=lambda: [
+        "Caesars Sportsbook",
+        "PrizePicks",
+    ])
+    all_sportsbooks: list = field(default_factory=lambda: [
+        "Caesars Sportsbook",
+        "PrizePicks",
+        "DraftKings",
+        "FanDuel",
+        "BetMGM",
+        "PointsBet",
+        "BetRivers",
+    ])
+    prizepicks_prop_types: list = field(default_factory=lambda: [
+        "Points", "Rebounds", "Assists", "Pts+Reb+Ast", "3-Pointers",
+        "Pass Yards", "Rush Yards", "Touchdowns",
+        "Hits", "RBIs", "Strikeouts",
+    ])
+
+
+@dataclass
 class APIConfig:
     host: str = "0.0.0.0"
     port: int = 8000
@@ -89,6 +112,7 @@ class Settings:
     arbitrage: ArbitrageConfig = field(default_factory=ArbitrageConfig)
     backtest: BacktestConfig = field(default_factory=BacktestConfig)
     api: APIConfig = field(default_factory=APIConfig)
+    platforms: PlatformConfig = field(default_factory=PlatformConfig)
 
 
 # Singleton settings instance
