@@ -126,7 +126,7 @@ async def get_games(
 
 @app.get("/api/games/live")
 async def get_live_games(sport: str = Query("nba", description="Sport")):
-    """Get live game data from ESPN."""
+    """Get live game data from ESPN (real data, no API key required)."""
     try:
         events = espn_provider.get_events(sport)
         return events
@@ -164,7 +164,9 @@ async def get_odds(
 
 @app.get("/api/odds/live")
 async def get_live_odds(sport: str = Query("nba", description="Sport")):
-    """Fetch live odds from The Odds API."""
+    """Fetch live odds from The Odds API (requires ODDS_API_KEY env var).
+    Falls back to realistic demo data if API key not configured.
+    """
     try:
         odds = odds_provider.get_odds(sport)
         return odds
